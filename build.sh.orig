@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Assign the location of your Tomcat installation
+TOMCAT_HOME=
+
+$TOMCAT_HOME/bin/shutdown.sh
+
+mvn clean package
+
+sleep 2
+
+rm -rf "$TOMCAT_HOME/webapps/outer"
+rm -f "$TOMCAT_HOME/webapps/outer.war"
+
+rm -rf "$TOMCAT_HOME/webapps/inner"
+rm -f "$TOMCAT_HOME/webapps/inner.war"
+
+cp "inner/target/inner.war" "$TOMCAT_HOME/webapps/"
+cp "outer/target/outer.war" "$TOMCAT_HOME/webapps/"
+
+$TOMCAT_HOME/bin/catalina.sh start

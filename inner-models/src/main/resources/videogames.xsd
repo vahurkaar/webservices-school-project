@@ -1,0 +1,43 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns:ws="http://www.ws.com/webservices"
+		   elementFormDefault="qualified"
+		   targetNamespace="http://www.ws.com/webservices">
+
+	<xs:include schemaLocation="videogames-types.xsd" />
+
+	<!-- ************************  Message elements  ****************************** -->
+
+	<xs:element name="GetVideoGamesRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VideoGameName" type="ws:VideoGameNameType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetVideoGamesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VideoGamesList" type="ws:VideoGamesList" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetVideoGameSpecsRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VideoGameID" type="xs:ID" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetVideoGameSpecsResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VideoGameSpecs" type="ws:VideoGameSpecsType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+
+</xs:schema>

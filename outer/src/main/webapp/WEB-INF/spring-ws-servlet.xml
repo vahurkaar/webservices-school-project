@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:sws="http://www.springframework.org/schema/web-services"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.ws.smart.service" />
+	<sws:annotation-driven marshaller="marshaller" />
+
+	<bean id="videogames" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+		<property name="locationUri" value="/smartVideoGameService/" />
+		<property name="portTypeName" value="SmartVideoGameResource" />
+		<property name="requestSuffix" value="Request" />
+		<property name="responseSuffix" value="Response" />
+		<property name="serviceName" value="smartVideoGameService" />
+		<property name="targetNamespace" value="http://www.ws.com/webservices/smart" />
+		<property name="schemaCollection" ref="schemaCollection" />
+	</bean>
+
+	<bean id="schemaCollection" class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
+		<property name="xsds">
+			<list>
+				<value>classpath:videogames-types.xsd</value>
+				<value>classpath:smart-videogames.xsd</value>
+			</list>
+		</property>
+		<property name="inline" value="true" />
+	</bean>
+
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate">
+		<property name="defaultUri" value="http://localhost:8080/inner/smartVideoGameService" />
+		<property name="marshaller" ref="marshaller" />
+		<property name="unmarshaller" ref="marshaller" />
+	</bean>
+
+	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPaths">
+			<array>
+				<value>com.ws.smart.model</value>
+				<value>com.ws.model</value>
+			</array>
+		</property>
+	</bean>
+
+</beans>

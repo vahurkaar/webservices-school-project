@@ -1,0 +1,47 @@
+<veeb:GetVideoGamesResponse xmlns:veeb="http://www.ws.com/webservices">
+	<veeb:VideoGamesList>
+		<!--Zero or more repetitions:-->
+		<veeb:VideoGame>
+			<veeb:ID>G1</veeb:ID>
+			<veeb:Name>Pro Evolution Soccer 2013</veeb:Name>
+			<veeb:Year>2012</veeb:Year>
+			<veeb:Rating>8</veeb:Rating>
+		</veeb:VideoGame>
+		<veeb:VideoGame>
+			<veeb:ID>G2</veeb:ID>
+			<veeb:Name>Grand Theft Auto IV (GTA IV)</veeb:Name>
+			<veeb:Year>2008</veeb:Year>
+			<veeb:Rating>9.5</veeb:Rating>
+			<!--Optional:-->
+			<veeb:Description>Followup for Grand Theft Auto San Andreas</veeb:Description>
+		</veeb:VideoGame>
+		<veeb:VideoGame>
+			<veeb:ID>G3</veeb:ID>
+			<veeb:Name>Battlefield 2142</veeb:Name>
+			<veeb:Year>2006</veeb:Year>
+			<veeb:Rating>8.1</veeb:Rating>
+			<!--Optional:-->
+			<veeb:Description>Battlefield 2142's new Titan mode is an exciting addition to the Battlefield series, though for the most part 2142 offers up minor improvements over its predecessor. </veeb:Description>
+		</veeb:VideoGame>
+		<veeb:VideoGame>
+			<veeb:ID>G4</veeb:ID>
+			<veeb:Name>Crysis 2</veeb:Name>
+			<veeb:Year>2011</veeb:Year>
+			<veeb:Rating>8.5</veeb:Rating>
+			<!--Optional:-->
+			<veeb:Description>This big, bold sequel offers an eerie vision of a city under siege. </veeb:Description>
+		</veeb:VideoGame>
+		<veeb:VideoGame>
+			<veeb:ID>G5</veeb:ID>
+			<veeb:Name>Assassins Creed</veeb:Name>
+			<veeb:Year>2007</veeb:Year>
+			<veeb:Rating>9</veeb:Rating>
+		</veeb:VideoGame>
+		<veeb:VideoGame>
+			<veeb:ID>G6</veeb:ID>
+			<veeb:Name>NBA 2K14</veeb:Name>
+			<veeb:Year>2013</veeb:Year>
+			<veeb:Rating>8</veeb:Rating>
+		</veeb:VideoGame>
+	</veeb:VideoGamesList>
+</veeb:GetVideoGamesResponse>

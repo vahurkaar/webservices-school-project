@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ws</groupId>
+    <artifactId>inner-models</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>inner models</name>
+    <url>http://www.springframework.org/spring-ws</url>
+
+	<parent>
+		<groupId>com.ws</groupId>
+		<artifactId>webservices</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+    <build>
+        <finalName>inner-models</finalName>
+        <plugins>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>generate</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaDirectory>src/main/resources</schemaDirectory>
+					<generatePackage>com.ws.model</generatePackage>
+					<episode>true</episode>
+				</configuration>
+			</plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.1</version>
+		</dependency>
+    </dependencies>
+</project>

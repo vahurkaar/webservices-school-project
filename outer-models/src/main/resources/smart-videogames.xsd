@@ -1,0 +1,35 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns:ws="http://www.ws.com/webservices"
+		   elementFormDefault="qualified"
+		   targetNamespace="http://www.ws.com/webservices/smart">
+
+	<xs:import namespace="http://www.ws.com/webservices" />
+
+	<!-- ************************  Message elements  ****************************** -->
+	<xs:element name="GetPlayableGamesRequest">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SpecsFilter">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="Processor" type="ws:ProcessorType" />
+							<xs:element name="VideoCard" type="ws:VideoCardType" />
+							<xs:element name="Memory" type="ws:MemoryType" />
+							<xs:element name="OS" type="ws:OsType" />
+							<xs:element name="HDD" type="ws:MemoryType" />
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="GetPlayableGamesResponse">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="VideoGamesList" type="ws:VideoGamesList" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+</xs:schema>

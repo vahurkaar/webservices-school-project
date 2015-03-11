@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:sws="http://www.springframework.org/schema/web-services"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/web-services http://www.springframework.org/schema/web-services/web-services-2.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="com.ws.service" />
+	<context:component-scan base-package="com.ws.dao" />
+	<sws:annotation-driven marshaller="marshaller" />
+
+	<bean id="videogames" class="org.springframework.ws.wsdl.wsdl11.DefaultWsdl11Definition">
+		<property name="locationUri" value="/videoGameService/" />
+		<property name="portTypeName" value="VideoGameResource" />
+		<property name="requestSuffix" value="Request" />
+		<property name="responseSuffix" value="Response" />
+		<property name="serviceName" value="videoGameService" />
+		<property name="targetNamespace" value="http://www.ws.com/webservices" />
+		<property name="schemaCollection" ref="schemaCollection" />
+	</bean>
+
+	<bean id="schemaCollection" class="org.springframework.xml.xsd.commons.CommonsXsdSchemaCollection">
+		<property name="xsds">
+			<list>
+				<value>classpath:videogames-types.xsd</value>
+				<value>classpath:videogames.xsd</value>
+			</list>
+		</property>
+		<property name="inline" value="true" />
+	</bean>
+
+	<bean id="marshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="contextPath" value="com.ws.model" />
+	</bean>
+
+</beans>

@@ -1,0 +1,124 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		   xmlns:ws="http://www.ws.com/webservices"
+		   elementFormDefault="qualified"
+		   targetNamespace="http://www.ws.com/webservices">
+
+	<!-- ************************  Types  ****************************** -->
+
+	<xs:simpleType name="VideoGameNameType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20" />
+			<xs:minLength value="5" />
+			<xs:pattern value="[a-zA-Z0-9\s]+" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="VideoGamesList">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="VideoGame" type="ws:VideoGameType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VideoGameType">
+		<xs:sequence>
+			<xs:element name="ID" type="xs:ID" />
+			<xs:element name="Name" type="xs:string" />
+			<xs:element name="Year" type="xs:gYear" />
+			<xs:element name="Rating" type="ws:RatingType" />
+			<xs:element name="Description" type="xs:string" minOccurs="0" maxOccurs="1" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="VideoGameSpecsType">
+		<xs:all>
+			<xs:element name="VideoGameID" type="xs:ID" />
+			<xs:element name="Processor" type="ws:ProcessorType" />
+			<xs:element name="VideoCard" type="ws:VideoCardType" />
+			<xs:element name="Memory" type="ws:MemoryType" />
+			<xs:element name="OS" type="ws:OsType" />
+			<xs:element name="HDD" type="ws:MemoryType" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:simpleType name="RatingType">
+		<xs:restriction base="xs:decimal">
+			<xs:maxInclusive value="10" />
+			<xs:minInclusive value="0" />
+			<xs:fractionDigits value="1" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ProcessorType">
+		<xs:all>
+			<xs:element name="Name" type="xs:string" />
+			<xs:element name="Number" type="xs:string" />
+			<xs:element name="ClockSpeed" type="ws:ClockSpeedType" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="VideoCardType">
+		<xs:all>
+			<xs:element name="Name" type="xs:string" />
+			<xs:element name="Series" type="xs:string" />
+			<xs:element name="Memory" type="ws:MemoryType" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="MemoryType">
+		<xs:all>
+			<xs:element name="Size" type="xs:decimal" />
+			<xs:element name="Unit" type="ws:MemoryUnit" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:complexType name="OsType">
+		<xs:all>
+			<xs:element name="Name" type="ws:OsEnum" />
+			<xs:element minOccurs="0" name="Version" type="ws:OsVersion" />
+		</xs:all>
+	</xs:complexType>
+
+	<xs:simpleType name="MemoryUnit">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GB" />
+			<xs:enumeration value="MB" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="ClockSpeedType">
+		<xs:sequence>
+			<xs:element name="Value" type="xs:decimal" />
+			<xs:element name="Unit" type="ws:SpeedUnit" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="SpeedUnit">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GHz" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OsEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Windows" />
+			<xs:enumeration value="OS X" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="OsVersion">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="XP" />
+			<xs:enumeration value="Vista" />
+			<xs:enumeration value="7" />
+			<xs:enumeration value="8" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="SystemSpecs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="SystemSpec" minOccurs="0" maxOccurs="unbounded" type="ws:VideoGameSpecsType" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
